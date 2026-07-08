@@ -1,0 +1,1 @@
+{"mappings":"AEAA,QAAQ,GAAG,CAAC","sources":["<anon>","src/main.js","src/js/getEvents.js"],"sourcesContent":["console.log(\"Hello World\");\n\n\n\n\n//# sourceMappingURL=event-booster.38b64dab.js.map\n","import \"./js/getEvents\";\r\n","console.log(\"Hello World\");\r\n"],"names":["console","log"],"version":3,"file":"event-booster.38b64dab.js.map"}
