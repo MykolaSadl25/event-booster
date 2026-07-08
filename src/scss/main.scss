@@ -1,1 +1,8 @@
-@use "./base/reset"
+@use "./base/reset";
+@use "./base/container";
+@use "./base/common";
+@use "./base/vars";
+@use "./sections/header";
+@use "./sections/main";
+@use "./sections/footer";
+@use "./sections/modal";
