@@ -1,1 +1,0 @@
-{"mappings":"ACAA","sources":["event-booster.892d12a8.css","src/srtyle.css"],"sourcesContent":["h2 {\n  color: red;\n  font-size: 100px;\n}\n/*# sourceMappingURL=event-booster.892d12a8.css.map */\n","h2{\n    color: red;\n    font-size: 100px;\n}"],"names":[],"version":3,"file":"event-booster.892d12a8.css.map"}
