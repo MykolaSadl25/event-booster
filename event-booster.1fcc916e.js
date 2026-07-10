@@ -715,10 +715,74 @@ function hmrAccept(bundle /*: ParcelRequire */ , id /*: string */ ) {
 
 },{}],"fILKw":[function(require,module,exports,__globalThis) {
 var _getEvents = require("./js/getEvents");
+var _createItems = require("./js/createItems");
 
-},{"./js/getEvents":"1Tn5K"}],"1Tn5K":[function(require,module,exports,__globalThis) {
-console.log("Hello World");
+},{"./js/getEvents":"1Tn5K","./js/createItems":"5yAc9"}],"1Tn5K":[function(require,module,exports,__globalThis) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "getEvents", ()=>getEvents) // getEvents().then(res=> console.log(res._embedded.events))
+;
+function getEvents() {
+    return fetch(`https://app.ticketmaster.com/discovery/v2/events.json?apikey=PBl0brP6qk41r3o6LHruGQHEHK0yTyK9`).then((res)=>res.json());
+}
 
-},{}]},["iUuJv","fILKw"], "fILKw", "parcelRequire70a8", {})
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"jnFvT":[function(require,module,exports,__globalThis) {
+exports.interopDefault = function(a) {
+    return a && a.__esModule ? a : {
+        default: a
+    };
+};
+exports.defineInteropFlag = function(a) {
+    Object.defineProperty(a, '__esModule', {
+        value: true
+    });
+};
+exports.exportAll = function(source, dest) {
+    Object.keys(source).forEach(function(key) {
+        if (key === 'default' || key === '__esModule' || Object.prototype.hasOwnProperty.call(dest, key)) return;
+        Object.defineProperty(dest, key, {
+            enumerable: true,
+            get: function() {
+                return source[key];
+            }
+        });
+    });
+    return dest;
+};
+exports.export = function(dest, destName, get) {
+    Object.defineProperty(dest, destName, {
+        enumerable: true,
+        get: get
+    });
+};
+
+},{}],"5yAc9":[function(require,module,exports,__globalThis) {
+var _getEvents = require("./getEvents");
+let imgURL = null;
+let date = null;
+const eventListRef = document.querySelector(".event__list");
+function createItems(events) {
+    const items = events.map((event)=>{
+        const { id, name: eventName, images, dates: { start: { localDate } }, _embedded: { venues: [{ city: { name: cityName } }] } } = event;
+        return `
+      <li class="event__item" id="${id}">
+        <img class="event__poster" src="${images[0].url}" alt="${eventName}">
+        <h2 class="event__name">${eventName}</h2>
+        <p class="event__date">${localDate}</p>
+        <p class="event__map">
+          <svg width="7" height="10" viewBox="0 0 7 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M3.5 0C1.57011 0 0 1.55933 0 3.47595C0 5.88495 3.50344 10 3.50344 10C3.50344 10 7 5.76648 7 3.47595C7 1.55933 5.42995 0 3.5 0ZM4.55602 4.49371C4.26484 4.78284 3.88245 4.92743 3.5 4.92743C3.11761 4.92743 2.7351 4.78284 2.44404 4.49371C1.86173 3.91547 1.86173 2.97455 2.44404 2.39624C2.72601 2.11609 3.10108 1.96179 3.5 1.96179C3.89892 1.96179 4.27393 2.11615 4.55602 2.39624C5.13833 2.97455 5.13833 3.91547 4.55602 4.49371Z" fill="white" />
+</svg>
+          ${cityName}
+        </p>
+        <div  class="event__position"></div>
+      </li>
+    `;
+    }).join("");
+    eventListRef.innerHTML = items;
+}
+(0, _getEvents.getEvents)().then((res)=>createItems(res._embedded.events));
+
+},{"./getEvents":"1Tn5K"}]},["iUuJv","fILKw"], "fILKw", "parcelRequire70a8", {})
 
 //# sourceMappingURL=event-booster.1fcc916e.js.map
