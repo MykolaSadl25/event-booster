@@ -1,11 +1,11 @@
 import { getEvents } from "./getEvents";
+let page = 0;
 let imgURL = null;
 let date = null;
 const eventListRef = document.querySelector(".event__list");
-
+const endPoint = document.querySelector(".observer")
 function createItems(events) {
-  const items = events
-    .map((event) => {
+  const items = events.map((event) => {
       const {
         id,
         name: eventName,
@@ -23,7 +23,7 @@ function createItems(events) {
       } = event;
 
       return `
-      <li class="event__item" id="${id}">
+      <li class="event__item" data-id="${id}">
         <img class="event__poster" src="${images[0].url}" alt="${eventName}">
         <h2 class="event__name">${eventName}</h2>
         <p class="event__date">${localDate}</p>
@@ -39,7 +39,21 @@ function createItems(events) {
     })
     .join("");
 
-  eventListRef.innerHTML = items;
+  eventListRef.insertAdjacentHTML("beforeend",items)
 }
 
-getEvents().then((res) => createItems(res._embedded.events));
+getEvents(page).then((res) => createItems(res._embedded.events));
+
+const observer = new IntersectionObserver((entries)=>{
+  entries.forEach(async entry=>{
+    if (entry.isIntersecting) {
+            page++
+            const res = await getEvents(page)
+             createItems(res._embedded.events)
+        }
+  })
+},{
+  rootMargin:"200px"
+})
+
+observer.observe(endPoint)

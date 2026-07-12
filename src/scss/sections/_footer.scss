@@ -1,0 +1,14 @@
+.footer{
+    padding-bottom: 60px;
+
+    &__copy{
+font-weight: 400;
+font-size: 14px;
+text-align: center;
+color: #939393;
+    }
+
+    @media screen and (min-width: 768px) {
+        font-size: 16px;
+    }
+}
