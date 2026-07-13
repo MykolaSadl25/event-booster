@@ -22,9 +22,32 @@
     rel="stylesheet"
     href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
     <link rel="stylesheet" href="./scss/main.css" />
+    <link rel="stylesheet" href="./scss/main.scss" />
   </head>
   <body>
-    <h2>hello world</h2>
+
+
+<header class="header container">
+  <div class="header_img">
+      <!-- <img src="" alt="header" /> -->
+  </div>
+
+  <div class="header-text">FIND BEST EVENTS AROUND THE WORLD</div>
+
+  <div class="header_search">
+    <input type="text" class="header_search_input" placeholder="Start searching">
+    
+    <select class="header_country_select">
+      <option value="" disabled selected hidden>Choose country</option>
+      <option value="us">United States</option>
+      <option value="uk">United Kingdom</option>
+      <option value="123">Придумай чтото</option>
+    </select>
+  </div>
+</header>
+
+
+
     <script type="module" src="./main.js"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>

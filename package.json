@@ -21,6 +21,7 @@
   },
   "homepage": "https://github.com/MykolaSadl25/event-booster#readme",
   "devDependencies": {
+    "@parcel/transformer-sass": "^2.16.4",
     "parcel": "^2.16.4"
   },
   "dependencies": {
