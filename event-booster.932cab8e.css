@@ -186,4 +186,21 @@ body {
     font-size: 14px;
   }
 }
+
+.footer {
+  padding-bottom: 60px;
+}
+
+.footer__copy {
+  text-align: center;
+  color: #939393;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+@media screen and (width >= 768px) {
+  .footer {
+    font-size: 16px;
+  }
+}
 /*# sourceMappingURL=event-booster.932cab8e.css.map */

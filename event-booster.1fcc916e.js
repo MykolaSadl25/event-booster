@@ -720,10 +720,13 @@ var _createItems = require("./js/createItems");
 },{"./js/getEvents":"1Tn5K","./js/createItems":"5yAc9"}],"1Tn5K":[function(require,module,exports,__globalThis) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "getEvents", ()=>getEvents) // getEvents().then(res=> console.log(res._embedded.events))
+parcelHelpers.export(exports, "getEvents", ()=>getEvents) // bhasbdhbasd
+ // getEvents().then(res=> console.log(res._embedded.events))
 ;
-function getEvents() {
-    return fetch(`https://app.ticketmaster.com/discovery/v2/events.json?apikey=PBl0brP6qk41r3o6LHruGQHEHK0yTyK9`).then((res)=>res.json());
+async function getEvents(page) {
+    const res = await fetch(`https://app.ticketmaster.com/discovery/v2/events.json?apikey=PBl0brP6qk41r3o6LHruGQHEHK0yTyK9&page=${page}`);
+    const info = await res.json();
+    return info;
 }
 
 },{"@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"jnFvT":[function(require,module,exports,__globalThis) {
@@ -758,14 +761,16 @@ exports.export = function(dest, destName, get) {
 
 },{}],"5yAc9":[function(require,module,exports,__globalThis) {
 var _getEvents = require("./getEvents");
+let page = 0;
 let imgURL = null;
 let date = null;
 const eventListRef = document.querySelector(".event__list");
+const endPoint = document.querySelector(".observer");
 function createItems(events) {
     const items = events.map((event)=>{
         const { id, name: eventName, images, dates: { start: { localDate } }, _embedded: { venues: [{ city: { name: cityName } }] } } = event;
         return `
-      <li class="event__item" id="${id}">
+      <li class="event__item" data-id="${id}">
         <img class="event__poster" src="${images[0].url}" alt="${eventName}">
         <h2 class="event__name">${eventName}</h2>
         <p class="event__date">${localDate}</p>
@@ -779,9 +784,22 @@ function createItems(events) {
       </li>
     `;
     }).join("");
-    eventListRef.innerHTML = items;
+    eventListRef.insertAdjacentHTML("beforeend", items);
 }
-(0, _getEvents.getEvents)().then((res)=>createItems(res._embedded.events));
+(0, _getEvents.getEvents)(page).then((res)=>createItems(res._embedded.events));
+const observer = new IntersectionObserver((entries)=>{
+    entries.forEach(async (entry)=>{
+        if (entry.isIntersecting) {
+            page++;
+            const res = await (0, _getEvents.getEvents)(page);
+            createItems(res._embedded.events);
+        }
+    });
+}, {
+    rootMargin: "200px"
+});
+observer.observe(endPoint) //  afsdfdsfdsf
+;
 
 },{"./getEvents":"1Tn5K"}]},["iUuJv","fILKw"], "fILKw", "parcelRequire70a8", {})
 
