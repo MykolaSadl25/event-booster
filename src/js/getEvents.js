@@ -5,5 +5,5 @@ export async function getEvents(page) {
 }
 
 
-
+// bhasbdhbasd
 // getEvents().then(res=> console.log(res._embedded.events))
