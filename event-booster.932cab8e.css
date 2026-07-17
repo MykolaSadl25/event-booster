@@ -55,6 +55,80 @@ body {
   font-family: Montserrat;
 }
 
+header {
+  background: url("header_pic.5b47edea.png") center / cover no-repeat;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 500px;
+  padding: 40px 20px;
+  display: flex;
+  position: relative;
+  overflow: hidden;
+}
+
+.header_img {
+  background: linear-gradient(135deg, #000000e6 0%, #0000 100%);
+  padding: 30px 60px 60px 30px;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.logo {
+  color: #fff;
+  letter-spacing: 3px;
+  font-family: Arial Black, sans-serif;
+  font-size: 20px;
+  line-height: 1.1;
+}
+
+.header-text {
+  text-align: center;
+  color: #dc56c5;
+  text-shadow: 0 0 15px #dc56c54d;
+  max-width: 550px;
+  margin-bottom: 40px;
+  font-size: 46px;
+  font-weight: bold;
+}
+
+.header_search {
+  gap: 20px;
+  display: flex;
+}
+
+.header_search_input, .header_country_select {
+  backdrop-filter: blur(5px);
+  color: #fff;
+  background-color: #ffffff26;
+  border: 1px solid #ffffff1a;
+  border-radius: 50px;
+  outline: none;
+  width: 320px;
+  height: 50px;
+  padding: 0 25px;
+  font-size: 16px;
+}
+
+.header_country_select {
+  appearance: none;
+  cursor: pointer;
+  background: #ffffff26 url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='white'><path d='M0 3h12l-6 6z'/></svg>") calc(100% - 25px) no-repeat;
+}
+
+.header_country_select option {
+  color: #fff;
+  background-color: #222;
+}
+
+.header_logo {
+  width: 250px;
+  position: absolute;
+  top: -10px;
+  left: -10px;
+}
+
 .event {
   padding-top: 30px;
   padding-bottom: 40px;
