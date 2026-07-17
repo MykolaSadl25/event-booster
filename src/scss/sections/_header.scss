@@ -1,0 +1,77 @@
+header {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  min-height: 500px;
+  background:url(/src/img/header_pic.png) no-repeat center/cover;
+  padding: 40px 20px;
+  overflow: hidden;
+}
+
+.header_img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: linear-gradient(135deg, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0) 100%);
+  padding: 30px 60px 60px 30px;
+}
+
+.logo {
+  color: #fff;
+  font-family: 'Arial Black', sans-serif;
+  font-size: 20px;
+  line-height: 1.1;
+  letter-spacing: 3px;
+}
+
+.header-text {
+  text-align: center;
+  max-width: 550px;
+  font-size: 46px;
+  font-weight: bold;
+  color: #DC56C5;
+  margin-bottom: 40px;
+  text-shadow: 0 0 15px rgba(220, 86, 197, 0.3);
+}
+
+.header_search {
+  display: flex;
+  gap: 20px; 
+}
+
+.header_search_input, 
+.header_country_select {
+  width: 320px;
+  height: 50px;
+  background-color: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(5px);
+  border-radius: 50px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 0 25px;
+  color: #fff;
+  font-size: 16px;
+  outline: none;
+}
+
+.header_country_select {
+  appearance: none; 
+  cursor: pointer;
+  background: rgba(255, 255, 255, 0.15) 
+              url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='white'><path d='M0 3h12l-6 6z'/></svg>") 
+          no-repeat calc(100% - 25px) center;
+}
+
+.header_country_select option {
+  background-color: #222;
+  color: #fff;
+}
+
+.header_logo{
+    // border-radius-right-bottom: 50%;
+    position: absolute;
+    top: -10px;
+    left: -10px;
+    width: 250px;
+}
