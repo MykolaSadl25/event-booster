@@ -1,9 +1,23 @@
 import { getEvents } from "./getEvents";
+import debounce from "lodash.debounce";
+import { alert, notice, info, success, error, defaultModules } from '@pnotify/core/dist/PNotify.js';
+import * as PNotifyMobile from '@pnotify/mobile/dist/PNotifyMobile.js';
+import '@pnotify/core/dist/BrightTheme.css';
+import "@pnotify/core/dist/PNotify.css";
+
 let page = 0;
 let imgURL = null;
 let date = null;
+let code = "US";
+let keyword = "";
+
 const eventListRef = document.querySelector(".event__list");
 const endPoint = document.querySelector(".observer")
+const keywordSearch = document.querySelector(".header_search_input")
+const countryCode = document.querySelector(".header_country_select");
+
+
+
 function createItems(events) {
   const items = events.map((event) => {
       const {
@@ -23,7 +37,7 @@ function createItems(events) {
       } = event;
 
       return `
-      <li class="event__item" data-id="${id}">
+      <li data-aos="flip-up" class="event__item" data-id="${id}">
         <img class="event__poster" src="${images[0].url}" alt="${eventName}">
         <h2 class="event__name">${eventName}</h2>
         <p class="event__date">${localDate}</p>
@@ -42,14 +56,44 @@ function createItems(events) {
   eventListRef.insertAdjacentHTML("beforeend",items)
 }
 
-getEvents(page).then((res) => createItems(res._embedded.events));
+async function render(keyword,countryCode,page) {
+  const res = await getEvents(keyword,countryCode,page)
+  if (!res._embedded) {
+    if (page === 0) {
+      eventListRef.innerHTML = "<p>No events found.</p>";
+      info({
+  title: 'No events(',
+  text: 'There is no events in your country. Try picking another country maybe there are some events.'
+});
+    }
+    return;
+  }
+
+  createItems(res._embedded.events);
+}
+
+keywordSearch.addEventListener("input",debounce((e)=>{
+  keyword = e.target.value;
+  page = 0;
+  eventListRef.innerHTML = "";
+  render(keyword,code,page)
+},500));
+
+countryCode.addEventListener("input",(e)=>{
+  code = e.target.value;
+  page = 0;
+  eventListRef.innerHTML = "";
+  render(keyword,code,page)
+});
+
+render(keyword,code,page)
 
 const observer = new IntersectionObserver((entries)=>{
   entries.forEach(async entry=>{
     if (entry.isIntersecting) {
             page++
-            const res = await getEvents(page)
-             createItems(res._embedded.events)
+            const res = await getEvents(keyword, code, page)
+             render(keyword, code, page)
         }
   })
 },{

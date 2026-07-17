@@ -21,10 +21,14 @@
   },
   "homepage": "https://github.com/MykolaSadl25/event-booster#readme",
   "devDependencies": {
+    "@pnotify/core": "^5.2.0",
+    "@pnotify/desktop": "^5.2.0",
+    "@pnotify/mobile": "^5.2.0",
     "parcel": "^2.16.4"
   },
   "dependencies": {
     "gh-pages": "^6.3.0",
+    "lodash.debounce": "^4.0.8",
     "sass": "^1.101.0"
   }
 }
