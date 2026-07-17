@@ -60,16 +60,29 @@ height: 312px;
         height: 227px;
     }
   }
-  &__name{
-font-weight: 700;
-font-size: 14px;
-text-align: center;
-color: #dc56c5;
-margin-bottom: 10px;
-@media screen and (min-width: 768px) {
-        font-size: 16px;
-    }
+&__name {
+  font-weight: 700;
+  font-size: 14px;
+  text-align: center;
+  color: #dc56c5;
+  margin-bottom: 10px;
+
+  animation: pulse 2s ease-in-out infinite;
+
+  @media screen and (min-width: 768px) {
+    font-size: 16px;
   }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.08);
+  }
+}
 
   &__date{
 font-weight: 400;
