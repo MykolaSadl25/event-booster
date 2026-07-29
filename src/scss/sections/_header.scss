@@ -27,7 +27,8 @@ header {
 }
 
 .header-text {
-  font-size: 46px;
+  width: 212px;
+  font-size: 18px;
   font-weight: 700;
   text-align: center;
   margin-bottom: 30px;
@@ -46,6 +47,17 @@ header {
   color: transparent;
 
   animation: shine 4s linear infinite;
+
+  @media screen and (min-width: 768px) {
+        width: 353px; 
+        font-size: 30px;  
+    }
+    @media screen and (min-width: 1200px) {
+        width: 589px;   
+        font-size: 50px;  
+
+    }
+
 }
 
 @keyframes shine {
@@ -61,6 +73,18 @@ header {
 .header_search {
   display: flex;
   gap: 20px; 
+
+  flex-direction: column;
+
+    @media screen and (min-width: 768px) {
+      flex-direction: row;
+
+    }
+    @media screen and (min-width: 1200px) {
+      flex-direction: row;
+
+    }
+
 }
 
 .header_search_input, 
@@ -91,9 +115,25 @@ header {
 }
 
 .header_logo{
-    // border-radius-right-bottom: 50%;
     position: absolute;
     top: -10px;
     left: -10px;
-    width: 250px;
+    width: 150px;
+    height: 150px;
+
+    
+        @media screen and (min-width: 768px) {
+              position: absolute;
+                width: 250px;
+                height: 250px;
+                top: -10px;
+                left: -10px;
+    }
+    @media screen and (min-width: 1200px) {
+        position: absolute;
+        width: 350px;
+        height: 350px;
+        top: -10px;
+        left: -10px;
+    }
 }
