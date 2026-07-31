@@ -4,3 +4,20 @@ body{
     scroll-behavior: smooth;
     color: white;
 }
+
+select {
+  width: 350px;
+  padding: 12px 16px;
+  font-size: 18px;
+  color: white;
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255,255,255,.3);
+  border-radius: 999px;
+  backdrop-filter: blur(10px);
+
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+
+  cursor: pointer;
+}
